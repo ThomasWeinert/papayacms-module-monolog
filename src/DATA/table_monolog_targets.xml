@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<table name="monolog_targets" prefix="yes">
+  <fields>
+    <field name="target_id" type="integer" size="4" null="no" autoinc="yes"/>
+    <field name="target_title" type="string" size="255" null="no"/>
+    <field name="target_active" type="integer" size="2" null="no"/>
+    <field name="target_name" type="string" size="255" null="no"/>
+    <field name="target_level" type="string" size="20" null="no"/>
+    <field name="target_profile" type="string" size="255" null="no"/>
+    <field name="target_options" type="string" size="65535" null="no"/>
+  </fields>
+  <keys>
+    <primary-key>
+      <field>target_id</field>
+    </primary-key>
+    <key name="target_title">
+      <field>target_title</field>
+    </key>
+  </keys>
+</table>

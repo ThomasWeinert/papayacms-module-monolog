@@ -1,0 +1,21 @@
+<?xml version="1.0"  encoding="ISO-8859-1" ?>
+  <modulegroup>
+  <name>Monolog Integration</name>
+  <modules>
+    <module
+      type="admin"
+      guid="36847363280ebb067f2874e8b1d6e37d"
+      name="Monolog Administration"
+      class="Papaya\Module\Monolog\Administration"
+      file="Administration.php"/>
+    <module
+      type="logger"
+      guid="db2a6e053a3aa1756fea56622ae9529f"
+      name="Logger Test"
+      class="Papaya\Module\Monolog\Loggers"
+      file="Loggers.php"/>
+  </modules>
+  <tables>
+    <table name="monolog_targets"/>
+  </tables>
+</modulegroup>
