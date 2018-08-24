@@ -79,7 +79,7 @@ namespace Papaya\Module\Monolog\Administration {
           $context, UI\Listview\Items $items, $record
         ) {
            $items[] = $item = new UI\Listview\Item(
-             '',
+             $record['is_active'] ? 'status-sign-ok' : 'status-sign-off',
              $record['title'],
              ['target_id' => $record['id']]
            );

@@ -40,6 +40,7 @@ namespace Papaya\Module\Monolog\Administration\Changes\Target {
         if (($recordId = $this->_record['id']) > 0) {
           $toolbar->elements[] = $button = new UI\Toolbar\Button();
           $button->caption = new UI\Text\Translated('General');
+          $button->image = 'items-page';
           $button->reference->setParameters(
             [
               'cmd' => 'target_edit',
@@ -50,6 +51,7 @@ namespace Papaya\Module\Monolog\Administration\Changes\Target {
           $button->selected = $this->parameters()->get('cmd', 'target_edit') === 'target_edit';
           $toolbar->elements[] = $button = new UI\Toolbar\Button();
           $button->caption = new UI\Text\Translated('Handler Options');
+          $button->image = 'items-option';
           $button->reference->setParameters(
             [
               'cmd' => 'target_configure',

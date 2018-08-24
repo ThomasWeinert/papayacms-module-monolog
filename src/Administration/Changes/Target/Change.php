@@ -54,6 +54,7 @@ namespace Papaya\Module\Monolog\Administration\Changes\Target {
       $dialog->fields[] = $field = new UI\Dialog\Field\Input(
         new UI\Text\Translated('Title'), 'title', 200
       );
+      $field->setMandatory(TRUE);
       $dialog->fields[] = $field = new UI\Dialog\Field\Input\Checkbox(
         new UI\Text\Translated('Active'), 'is_active', '', FALSE
       );

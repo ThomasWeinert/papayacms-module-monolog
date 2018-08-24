@@ -5,9 +5,10 @@
     <module
       type="admin"
       guid="36847363280ebb067f2874e8b1d6e37d"
-      name="Monolog Administration"
+      name="Monolog"
       class="Papaya\Module\Monolog\Administration"
-      file="Administration.php"/>
+      file="Administration.php"
+      glyph="protocol.png">Monolog target configuration</module>
     <module
       type="logger"
       guid="db2a6e053a3aa1756fea56622ae9529f"
