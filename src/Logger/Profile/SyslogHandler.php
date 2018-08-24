@@ -33,7 +33,7 @@ namespace Papaya\Module\Monolog\Logger\Profile {
      * @throws \Exception
      */
     public function __invoke($name, $logLevel) {
-      $logger = new \Monolog\Logger('name');
+      $logger = new \Monolog\Logger($name);
       $logger->pushHandler(
         new \Monolog\Handler\SyslogHandler(
           $this->options()->get('identifier', self::$_DEFAULTS['identifier']),

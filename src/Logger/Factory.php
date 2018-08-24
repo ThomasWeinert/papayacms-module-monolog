@@ -22,10 +22,12 @@ namespace Papaya\Module\Monolog\Logger {
      * @param string $profileClass
      * @param string $name
      * @param string $logLevel
+     * @param array $options
      * @return \Psr\Log\LoggerInterface
      */
-    public function createLogger($profileClass, $name, $logLevel) {
+    public function createLogger($profileClass, $name, $logLevel, array $options) {
       $profile =$this->createProfile($profileClass);
+      $profile->options()->setValues($options);
       return $profile($name, $logLevel);
     }
 

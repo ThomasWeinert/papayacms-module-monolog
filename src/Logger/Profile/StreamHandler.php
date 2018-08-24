@@ -20,7 +20,7 @@ namespace Papaya\Module\Monolog\Logger\Profile {
      * @throws \Exception
      */
     public function __invoke($name, $logLevel) {
-      $logger = new \Monolog\Logger('name');
+      $logger = new \Monolog\Logger($name);
       $logger->pushHandler(
         new \Monolog\Handler\StreamHandler(
           $this->options()->get('stream', self::$_DEFAULTS['stream']),

@@ -2,15 +2,16 @@
 
 namespace Papaya\Module\Monolog {
 
-  use Monolog\Logger;
-  use Monolog\Handler\StreamHandler;
-
   class Loggers implements \Papaya\Plugin\LoggerFactory {
 
     /**
      * @var Content\Targets
      */
     private $_targets;
+    /**
+     * @var Logger\Factory
+     */
+    private $_factory;
 
     /**
      * @return \Papaya\Message\Dispatcher
@@ -19,12 +20,8 @@ namespace Papaya\Module\Monolog {
     public function createLogger() {
       $result = new \Papaya\Message\Dispatcher\Collection();
       foreach ($this->targets() as $target) {
-        $logger = new Logger($target['name']);
-        $logger->pushHandler(
-          new StreamHandler(
-            \Papaya\Utility\Arrays::get($target['options'], 'stream', ''),
-            $target['level']
-          )
+        $logger = $this->loggerFactory()->createLogger(
+          $target['profile'], $target['name'], $target['level'], $target['options']
         );
         $result->add(new \Papaya\Message\Dispatcher\PSR3($logger));
       }
@@ -44,6 +41,19 @@ namespace Papaya\Module\Monolog {
         $this->_targets->activateLazyLoad(['is_active' => TRUE]);
       }
       return $this->_targets;
+    }
+
+    /**
+     * @param Logger\Factory $factory
+     * @return Logger\Factory
+     */
+    public function loggerFactory(Logger\Factory $factory = NULL) {
+      if (NULL !== $factory) {
+        $this->_factory = $factory;
+      } elseif (NULL === $this->_factory) {
+        $this->_factory = new Logger\Factory();
+      }
+      return $this->_factory;
     }
   }
 }

@@ -21,7 +21,7 @@ namespace Papaya\Module\Monolog\Logger\Profile {
      * @throws \Exception
      */
     public function __invoke($name, $logLevel) {
-      $logger = new \Monolog\Logger('name');
+      $logger = new \Monolog\Logger($name);
       $handler = new \Monolog\Handler\SocketHandler(
         $this->options()->get('socket', self::$_DEFAULTS['socket']),
         $logLevel

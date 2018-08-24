@@ -21,7 +21,7 @@ namespace Papaya\Module\Monolog\Logger\Profile {
      * @throws \Exception
      */
     public function __invoke($name, $logLevel) {
-      $logger = new \Monolog\Logger('name');
+      $logger = new \Monolog\Logger($name);
       $logger->pushHandler(
         new \Monolog\Handler\RotatingFileHandler(
           $this->options()->get('filename', self::$_DEFAULTS['filename']),

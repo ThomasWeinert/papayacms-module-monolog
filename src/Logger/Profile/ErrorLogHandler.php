@@ -25,7 +25,7 @@ namespace Papaya\Module\Monolog\Logger\Profile {
      * @throws \Exception
      */
     public function __invoke($name, $logLevel) {
-      $logger = new \Monolog\Logger('name');
+      $logger = new \Monolog\Logger($name);
       $logger->pushHandler(
         new \Monolog\Handler\ErrorLogHandler(
           $this->options()->get('message_type', self::$_DEFAULTS['message_type']),
