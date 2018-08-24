@@ -5,12 +5,12 @@ namespace Papaya\Module\Monolog\Logger\Profile {
   use Papaya\Module\Monolog\Logger;
   use Papaya\UI;
 
-  class StreamHandler implements Logger\Profile {
+  class ProcessHandler implements Logger\Profile {
 
     use Logger\Options\Aggregation;
 
     private static $_DEFAULTS = [
-      'stream' => ''
+      'command' => ''
     ];
 
     /**
@@ -22,8 +22,8 @@ namespace Papaya\Module\Monolog\Logger\Profile {
     public function __invoke($name, $logLevel) {
       $logger = new \Monolog\Logger('name');
       $logger->pushHandler(
-        new \Monolog\Handler\StreamHandler(
-          $this->options()->get('stream', self::$_DEFAULTS['stream']),
+        new \Monolog\Handler\ProcessHandler(
+          $this->options()->get('command', self::$_DEFAULTS['command']),
           $logLevel
         )
       );
@@ -38,8 +38,7 @@ namespace Papaya\Module\Monolog\Logger\Profile {
       $editor = new \Papaya\Administration\Plugin\Editor\Dialog($options);
       $dialog = $editor->dialog();
       $dialog->fields[] = new UI\Dialog\Field\Input(
-        new UI\Text\Translated('Stream'),
-        'stream'
+        new UI\Text\Translated('Command'), 'command', 2000, self::$_DEFAULTS['command']
       );
       return $editor;
     }

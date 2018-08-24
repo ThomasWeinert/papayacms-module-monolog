@@ -46,7 +46,7 @@ namespace Papaya\Module\Monolog\Administration\Changes\Target {
       $dialog->parameters($this->parameters());
       $dialog->hiddenFields()->merge(
         array(
-          'cmd' => 'set_edit',
+          'cmd' => 'target_edit',
           'target_id' => $targetId
         )
       );
@@ -55,16 +55,11 @@ namespace Papaya\Module\Monolog\Administration\Changes\Target {
         new UI\Text\Translated('Title'), 'title', 200
       );
       $dialog->fields[] = $field = new UI\Dialog\Field\Input\Checkbox(
-        new UI\Text\Translated('Active'), 'is_active'
+        new UI\Text\Translated('Active'), 'is_active', '', FALSE
       );
-      $field->setMandatory(TRUE);
       $dialog->fields[] = $group = new UI\Dialog\Field\Group(new UI\Text\Translated('Logger'));
-      $group->fields[] = $field = new UI\Dialog\Field\Input(
-        new UI\Text\Translated('Name'),
-        'name',
-        100,
-        '',
-        new \Papaya\Filter\RegEx('(^\w+$)D')
+      $group->fields[] = $field = new UI\Dialog\Field\Input\Identifier(
+        new UI\Text\Translated('Name'), 'name'
       );
       $field->setMandatory(TRUE);
       $group->fields[] = $field = new UI\Dialog\Field\Select(

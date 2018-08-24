@@ -5,12 +5,13 @@ namespace Papaya\Module\Monolog\Logger\Profile {
   use Papaya\Module\Monolog\Logger;
   use Papaya\UI;
 
-  class StreamHandler implements Logger\Profile {
+  class RotatingFileHandler implements Logger\Profile {
 
     use Logger\Options\Aggregation;
 
     private static $_DEFAULTS = [
-      'stream' => ''
+      'filename' => '',
+      'maximum_files' => 0
     ];
 
     /**
@@ -22,8 +23,9 @@ namespace Papaya\Module\Monolog\Logger\Profile {
     public function __invoke($name, $logLevel) {
       $logger = new \Monolog\Logger('name');
       $logger->pushHandler(
-        new \Monolog\Handler\StreamHandler(
-          $this->options()->get('stream', self::$_DEFAULTS['stream']),
+        new \Monolog\Handler\RotatingFileHandler(
+          $this->options()->get('filename', self::$_DEFAULTS['filename']),
+          $this->options()->get('maximum_files', self::$_DEFAULTS['maximum_files']),
           $logLevel
         )
       );
@@ -38,8 +40,12 @@ namespace Papaya\Module\Monolog\Logger\Profile {
       $editor = new \Papaya\Administration\Plugin\Editor\Dialog($options);
       $dialog = $editor->dialog();
       $dialog->fields[] = new UI\Dialog\Field\Input(
-        new UI\Text\Translated('Stream'),
-        'stream'
+        new UI\Text\Translated('filename'),
+        'filename'
+      );
+      $dialog->fields[] = new UI\Dialog\Field\Input\Number(
+        new UI\Text\Translated('Maximum files'),
+        'maximum_files'
       );
       return $editor;
     }

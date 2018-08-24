@@ -5,7 +5,12 @@ namespace Papaya\Module\Monolog\Logger {
   class Factory {
 
     const PROFILES = [
-      Profile\StreamHandler::class => 'StreamHandler'
+      Profile\StreamHandler::class => 'StreamHandler',
+      Profile\RotatingFileHandler::class => 'RotatingFileHandler',
+      Profile\SyslogHandler::class => 'SylogHandler',
+      Profile\ErrorLogHandler::class => 'ErrorLogHandler',
+      Profile\ProcessHandler::class => 'ProcessHandler',
+      Profile\SlackWebhookHandler::class => 'SlackWebhookHandler'
     ];
 
     /**
