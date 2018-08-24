@@ -5,12 +5,17 @@ namespace Papaya\Module\Monolog\Logger {
   class Factory {
 
     const PROFILES = [
+      // Log to files and syslog
       Profile\StreamHandler::class => 'StreamHandler',
       Profile\RotatingFileHandler::class => 'RotatingFileHandler',
-      Profile\SyslogHandler::class => 'SylogHandler',
+      Profile\SyslogHandler::class => 'SyslogHandler',
       Profile\ErrorLogHandler::class => 'ErrorLogHandler',
       Profile\ProcessHandler::class => 'ProcessHandler',
-      Profile\SlackWebhookHandler::class => 'SlackWebhookHandler'
+      // Send alerts and emails
+      Profile\SlackWebhookHandler::class => 'SlackWebhookHandler',
+      // Log specific servers and networked logging
+      Profile\SocketHandler::class => 'SocketHandler',
+      Profile\SyslogUdpHandler::class => 'SyslogUdpHandler'
     ];
 
     /**

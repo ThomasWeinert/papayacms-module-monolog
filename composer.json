@@ -10,10 +10,11 @@
     }
   },
   "require": {
+    "php": ">=5.6",
     "papaya/cms-core": "dev-master@dev",
     "papaya/module-default": "1.*",
     "papaya/module-standard": "1.*",
-    "monolog/monolog": "^2.0@dev"
+    "monolog/monolog": "^1.23"
   },
   "require-dev": {
     "papaya/theme-dynamic": "1.*",
