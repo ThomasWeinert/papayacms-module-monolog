@@ -4,6 +4,12 @@ namespace Papaya\Module\Monolog {
 
   class Administration extends \Papaya\Administration\Page {
 
+    const PERMISSION_MANAGE = 1;
+
+    public $permissions = array(
+      self::PERMISSION_MANAGE => 'Manage',
+    );
+
     protected
       /** @noinspection ClassOverridesFieldOfSuperClassInspection */
       $_parameterGroup = 'log';
@@ -20,5 +26,10 @@ namespace Papaya\Module\Monolog {
       return new Administration\Navigation();
     }
 
+    public function validateAccess() {
+      return $this->papaya()->administrationUser->hasPerm(
+        self::PERMISSION_MANAGE, $this->getModuleId()
+      );
+    }
   }
 }
